@@ -1,0 +1,61 @@
+\documentclass{beamer}
+\usepackage[latin1]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+\lstloadlanguages{C}
+\author{Johannes Hackel}
+\title{OpenCL}
+
+\usetheme{Ilmenau}
+\useoutertheme{infolines}
+\usecolortheme{rose}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Gliederung}
+\tableofcontents
+\end{frame}
+
+\section{Was ist OpenCL?}
+\subsection{Geschichte}
+\subsection{Unterstütze Geräte/Treiber}
+
+\section{Aufbau GPUs}
+
+\section{Die OpenCL}
+\subsection{Kernel}
+\begin{frame}
+\begin{lstlisting}
+float Sum(float x, float y)
+{
+ return(x + y);
+}
+__kernel void Calculate(__global float* input, __global float* output)
+{
+ // TODO: Führe Berechnung aus und benutze Funktion Sum.
+}
+
+\end{lstlisting}
+
+\end{frame}
+\subsection{Datentypen}
+\subsection{Speicherbereiche}
+\subsection{Funktionen}
+
+\section{Die Laufzeitbibliothek}
+\subsection{Plattformen/Geräte}
+\subsection{Kontexte/Speicherverwaltung}
+\subsection{Programme/Kernels}
+\subsection{Warteschlangen/Ereignisse/Marker und Barrieren}
+
+\section{Kompilierung und Ausführung}
+\end{document}
