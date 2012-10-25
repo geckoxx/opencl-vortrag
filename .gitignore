@@ -5,4 +5,7 @@ beamer/*.nav
 beamer/*.out
 beamer/*.synctex.gz
 beamer/*.snm
+beamer/*.vrb
 beamer/opencl.pdf
+
+openCL_info/build

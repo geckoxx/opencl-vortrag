@@ -1,13 +1,25 @@
 \documentclass{beamer}
-\usepackage[latin1]{inputenc}
+\usepackage[utf8x]{inputenc}
 \usepackage[ngerman]{babel}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{hyperref}
 \usepackage{listings}
-\lstloadlanguages{C}
-\author{Johannes Hackel}
+\lstset{literate=%
+{Ö}{{\"O}}1
+{Ä}{{\"A}}1
+{Ü}{{\"U}}1
+{ß}{{\ss}}2
+{ü}{{\"u}}1
+{ä}{{\"a}}1
+{ö}{{\"o}}1
+}
+
+\lstset{language=C}
+
+\author{Johannes Hackel \and Tim Illner \and Marcel Wesberg}
 \title{OpenCL}
 
 \usetheme{Ilmenau}
@@ -26,36 +38,82 @@
 \end{frame}
 
 \section{Was ist OpenCL?}
+\begin{frame}[fragile]
+\frametitle{Was ist OpenCL?}
+\url{http://en.wikipedia.org/wiki/OpenCL}
+\end{frame}
 \subsection{Geschichte}
+\begin{frame}[fragile]
+\frametitle{Geschichte}
+\url{http://en.wikipedia.org/wiki/OpenCL#History}
+\end{frame}
 \subsection{Unterstütze Geräte/Treiber}
+\begin{frame}[fragile]
+\frametitle{Unterstütze Geräte/Treiber}
+\url{http://en.wikipedia.org/wiki/OpenCL#OpenCL-conformant_products}
+\end{frame}
 
 \section{Aufbau GPUs}
+\begin{frame}[fragile]
+\frametitle{Aufbau GPUs}
+\url{http://www.zdnet.de/wp-content/uploads/legacy_images/news/201004/aws-gpu-v6.png}\\
+oder ähnliches
+\end{frame}
 
 \section{Die OpenCL}
 \subsection{Kernel}
-\begin{frame}
+\begin{frame}[fragile]
+\frametitle{Die OpenCL}
+\framesubtitle{Kernel}
 \begin{lstlisting}
 float Sum(float x, float y)
 {
  return(x + y);
 }
-__kernel void Calculate(__global float* input, __global float* output)
+__kernel void Calculate(__global float* input,
+ __global float* output)
 {
- // TODO: Führe Berechnung aus und benutze Funktion Sum.
+ \\Code-Formatierungstest
 }
-
 \end{lstlisting}
-
 \end{frame}
+
 \subsection{Datentypen}
+\begin{frame}[fragile]
+\frametitle{Datentypen}
+\end{frame}
 \subsection{Speicherbereiche}
+\begin{frame}[fragile]
+\frametitle{Speicherbereiche}
+\end{frame}
 \subsection{Funktionen}
+\begin{frame}[fragile]
+\frametitle{Funktionen}
+\end{frame}
 
 \section{Die Laufzeitbibliothek}
+\begin{frame}[fragile]
+\frametitle{Die Laufzeitbibliothek}
+\end{frame}
 \subsection{Plattformen/Geräte}
+\begin{frame}[fragile]
+\frametitle{Plattformen/Geräte}
+\end{frame}
 \subsection{Kontexte/Speicherverwaltung}
+\begin{frame}[fragile]
+\frametitle{Kontexte/Speicherverwaltung}
+\end{frame}
 \subsection{Programme/Kernels}
+\begin{frame}[fragile]
+\frametitle{Programme/Kernels}
+\end{frame}
 \subsection{Warteschlangen/Ereignisse/Marker und Barrieren}
+\begin{frame}[fragile]
+\frametitle{Warteschlangen/Ereignisse/Marker und Barrieren}
+\end{frame}
 
 \section{Kompilierung und Ausführung}
+\begin{frame}[fragile]
+\frametitle{Kompilierung und Ausführung}
+\end{frame}
 \end{document}
