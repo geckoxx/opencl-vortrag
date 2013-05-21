@@ -101,7 +101,7 @@ int main(int argc, char **argv) {
     long image1_size = 4 * image1.rows() * image1.columns();
     int height = image1.rows();
     int width = image1.columns();
-    uint8_t *image1_pixels = new uint8_t[image1_size];
+    int8_t *image1_pixels = new int8_t[image1_size];
     image1.write(0, 0, image1.columns(), image1.rows(), "RGBA", MagickCore::CharPixel, image1_pixels);
     
     cl::size_t<3> origin;
@@ -114,7 +114,7 @@ int main(int argc, char **argv) {
     region.push_back(1);
     
     cl::ImageFormat inFormat;
-    inFormat.image_channel_data_type = CL_UNSIGNED_INT8;
+    inFormat.image_channel_data_type = CL_SIGNED_INT8;
     inFormat.image_channel_order = CL_RGBA;
     cl::Image2D imageIn(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, inFormat, width, height, 0, image1_pixels, &err);
     checkErr(err, "Image2D()");
@@ -134,7 +134,7 @@ int main(int argc, char **argv) {
     err = imageProgram.build(devices);
     checkErr(err, "Program::build()");
         
-    cl::Kernel basic(imageProgram, "copy", &err);
+    cl::Kernel basic(imageProgram, "edge_detection", &err);
     checkErr(err, "Kernel()");
         
     basic.setArg(0, imageIn);

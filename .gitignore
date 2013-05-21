@@ -9,3 +9,4 @@ beamer/*.vrb
 
 openCL_info/build
 clim/build
+clim/.kdev4

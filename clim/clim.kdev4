@@ -1,4 +1,3 @@
 [Project]
-Name=clim
 Manager=KDevCMakeManager
-VersionControl=kdevgit
+Name=clim
