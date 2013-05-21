@@ -26,8 +26,8 @@ float my_rand() {
 
 void createMat() {
     srand(time(0));
-    m = 5;
-    n = 5;
+    m = 10;
+    n = 8;
     p = 5;
     a_host = (float*)malloc(sizeof(float) * m * n);
     b_host = (float*)malloc(sizeof(float) * n * p);

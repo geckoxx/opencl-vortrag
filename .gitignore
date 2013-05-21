@@ -8,3 +8,4 @@ beamer/*.snm
 beamer/*.vrb
 
 openCL_info/build
+clim/build
