@@ -120,6 +120,7 @@
 CUDA:
 \begin{itemize}
 \item NVIDIA-GPUs
+\newline
 \end{itemize}
 OpenCL:
 \begin{itemize}
@@ -136,6 +137,7 @@ CUDA:
 \item Hardware und Technologie vom gleichen Hersteller
 \item gute Implementation
 \item gute Leistung
+\newline
 \end{itemize}
 OpenCL:
 \begin{itemize}
@@ -149,15 +151,15 @@ OpenCL:
 \frametitle{API/Modell}
 \begin{itemize}
 \item Modelle ähneln sich
-\item Begriffsunterchiede
-\item weitere Unterschiede
+\item Begriffsunterschiede
+\item weitere Unterschiede in der Syntax
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \begin{center}
 \includegraphics[width=10cm]{cuda_opencl_begriffe.png}
-\newline Quelle: [1]
+\footnote{\tiny{Quelle: [2]}}
 \end{center}
 \end{frame}
 
@@ -165,7 +167,7 @@ OpenCL:
 \begin{frame}
 \begin{center}
 \includegraphics[width=9cm]{api_abstraction_level.png}
-\newline Quelle: [2]
+\footnote{\tiny{Quelle: [3]}}
 \end{center}
 \end{frame}
 
@@ -177,6 +179,7 @@ OpenCL:
 \item verschiedene Debugging-Möglichkeiten je Plattform
 \item guter Debugger(cross-plattform): gDEBugger
 \item verschieden Geräte: unterschiedliche Implementation
+\newline
 \end{itemize}
 CUDA:
 \begin{itemize}
@@ -186,22 +189,56 @@ CUDA:
 \end{itemize}
 \end{frame}
 
+\subsection{Fazit}
+\begin{frame}
+\frametitle{Fazit}
+$\to$
+für High-Performance-Cluster mit gleicher Hardware und speziell angefertigter Software
+\newline
+$\Rightarrow$
+CUDA zu bevorzugen
+\newline
+\newline
+$\to$
+im Consumerbereich bei Verwendung von verschiedener Hardware
+\newline
+$\Rightarrow$
+OpenCL bevorzugt
+\end{frame}
+
 \section{Bildverarbeitung}
 
 \subsection{Allgemeines zu Bildverarbeitung mit OpenCL}
 \begin{frame}
 \frametitle{Allgemeines zu Bildverarbeitung mit OpenCL}
 \begin{itemize}
-\item Test
+\item spezielle Datentypen (image2d\_t, image3d\_t) und Funktionen im OpenCL C
+\item Image2D und Image3D Klassen in der C++ API
+\item Verschiedene Datentypen für Channels
+\item Verschiedene Reihenfolge der Channels
+\item maximale Größe eines Images je Plattform festgelegt
 \end{itemize}
 \end{frame}
 
-\subsection{Kantenerkennung von Bildern in OpenCL}
+\subsection{Kantenerkennung in Bildern}
 \begin{frame}
-\frametitle{Kantenerkennung von Bildern in OpenCL}
-\begin{itemize}
-\item Test
-\end{itemize}
+\frametitle{Kantenerkennung in Bildern}
+Ablauf:
+\begin{enumerate}
+\item Graubild erstellen und entrauschen
+\item Anwendung des Sobeloperators je Pixel in X-Richtung und Y-Richtung mit den Nachbarwerten
+\item Kombination beider Ergebnisse ergibt Kantenwert des Pixels
+\end{enumerate}
+\end{frame}
+
+\subsection{Kantenerkennung in Bildern mit OpenCL}
+\begin{frame}
+\frametitle{Kantenerkennung in Bildern mit OpenCL}
+Verwendeter einfacher Algorithmus:
+\begin{enumerate}
+\item Differenzen der gegenüberliegenden Pixel
+\item der höchste Wert wird der Kantenwert des Pixels
+\end{enumerate}
 \end{frame}
 
 \begin{appendix}
