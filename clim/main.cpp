@@ -69,6 +69,10 @@ inline void checkErr(cl_int err, const char * name)
 }
 
 int main(int argc, char **argv) {
+    if(argc < 3) {
+        std::cout << "Eingabe- und Ausgabebild angeben!" << std::endl;
+        return 0;
+    }
     cl_int err;
     std::vector<Platform> platforms;
     Platform::get(&platforms);
@@ -93,11 +97,11 @@ int main(int argc, char **argv) {
             break;
         }
     }
-    
+        
     CommandQueue queue = CommandQueue(context, device);
     
     Magick::Image image1;
-    image1.read("../Ball.png");
+    image1.read(argv[1]);
     long image1_size = 4 * image1.rows() * image1.columns();
     int height = image1.rows();
     int width = image1.columns();
@@ -151,7 +155,7 @@ int main(int argc, char **argv) {
     read_event.wait();
     Magick::Image image2;
     image2.read(image1.columns(), image1.rows(), "RGBA", MagickCore::CharPixel, image2_pixels);
-    image2.write("../Ball_out.png");
+    image2.write(argv[2]);
     
     return 0;
 }
