@@ -26,7 +26,7 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Gliederung}
+\frametitle{Bildverarbeitung mit OpenCL}
 \tableofcontents
 \end{frame}
 
@@ -40,12 +40,76 @@
 \end{itemize}
 \end{frame}
 
-\subsection{Grundlegender Aufbau eines OpenCL-Programmes}
+\subsection{Kernelverteilung unter Devices und Command Queue}
+
+\subsubsection*{Kernelverteilung unter Devices}
 \begin{frame}
-\frametitle{Grundlegender Aufbau eines OpenCL-Programmes}
-\begin{itemize}
-\item Test
-\end{itemize}
+\frametitle{Kernelverteilung unter Devices}
+\begin{figure}
+\begin{center}
+\includegraphics[width=8cm]{kernel_distr_manning_p8.PNG}
+\footnote{\tiny{Scarpino Matthew: OpenCL In Action, \\Manning Publications Co., 2012, S. 8}}
+\end{center}
+\end{figure}
+\end{frame}
+
+\subsubsection*{Command Queue}
+\begin{frame}
+\frametitle{Command Queue}
+\begin{figure}
+\begin{center}
+\includegraphics[width=6cm]{command_queue_manning_p39.PNG}
+\footnote{\tiny{Scarpino Matthew: OpenCL In Action, \\Manning Publications Co., 2012, S. 39}}
+\end{center}
+\end{figure}
+\end{frame}
+
+\subsection{Workgroups und Compute Units und Device Model}
+
+\subsubsection*{Workgroups und Compute Units}
+\begin{frame}
+\frametitle{Workgroups und Compute Units}
+\begin{figure}
+\begin{center}
+\includegraphics[width=8cm]{workgroups_to_compute_units_manning_p66.PNG}
+\footnote{\tiny{Scarpino Matthew: OpenCL In Action, \\Manning Publications Co., 2012, S. 66}}
+\end{center}
+\end{figure}
+\end{frame}
+
+\subsubsection*{Device Model}
+\begin{frame}
+\frametitle{Device Model}
+\begin{figure}
+\begin{center}
+\includegraphics[width=8cm]{device_model_manning_p87.PNG}
+\footnote{\tiny{Scarpino Matthew: OpenCL In Action, \\Manning Publications Co., 2012, S. 87}}
+\end{center}
+\end{figure}
+\end{frame}
+
+\subsection{Events in OpenCL}
+
+\subsubsection*{Wait Lists}
+\begin{frame}
+\frametitle{Wait Lists}
+\begin{figure}
+\begin{center}
+\includegraphics[width=9cm]{wait_lists_command_sync_p146.PNG}
+\footnote{\tiny{Scarpino Matthew: OpenCL In Action, \\Manning Publications Co., 2012, S. 146}}
+\end{center}
+\end{figure}
+\end{frame}
+
+\subsubsection*{Wait Command}
+\begin{frame}
+\frametitle{Wait Command}
+\begin{figure}
+\begin{center}
+\includegraphics[width=5cm]{wait_command_p150.PNG}
+\footnote{\tiny{Scarpino Matthew: OpenCL In Action, \\Manning Publications Co., 2012, S. 150}}
+\end{center}
+\end{figure}
 \end{frame}
 
 \section{Vergleich von OpenCL mit CUDA}
@@ -144,6 +208,7 @@ CUDA:
 \begin{frame}
 \frametitle{Quellen}
 \begin{enumerate}
+\item Scarpino Matthew: OpenCL In Action, \\Manning Publications Co., 2012
 \item \url{ftp://ftp.informatik.uni-stuttgart.de/pub/library/medoc.ustuttgart_fi/DIP-3178/DIP-3178.pdf}
 \item \url{https://wiki.aalto.fi/download/attachments/40025977/Cuda+and+OpenCL+API+comparison_presented.pdf}
 \end{enumerate}
