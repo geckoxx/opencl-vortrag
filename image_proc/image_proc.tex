@@ -48,11 +48,77 @@
 \end{itemize}
 \end{frame}
 
-\subsection{Vergleich von OpenCL mit CUDA}
+\section{Vergleich von OpenCL mit CUDA}
+
+\subsection{Unterstütze Plattformen}
 \begin{frame}
-\frametitle{Vergleich von OpenCL mit CUDA}
+\frametitle{Unterstütze Plattformen}
+CUDA:
 \begin{itemize}
-\item Test
+\item NVIDIA-GPUs
+\end{itemize}
+OpenCL:
+\begin{itemize}
+\item alle Recheneinheiten die OpenCL unterstützt
+\item CPUs, GPUs
+\end{itemize}
+\end{frame}
+
+\subsection{Performance}
+\begin{frame}
+\frametitle{Performance}
+CUDA:
+\begin{itemize}
+\item Hardware und Technologie vom gleichen Hersteller
+\item gute Implementation
+\item gute Leistung
+\end{itemize}
+OpenCL:
+\begin{itemize}
+\item von Plattform abhängig
+\item Faktoren: Leistung, Implementation
+\end{itemize}
+\end{frame}
+
+\subsection{API/Modell}
+\begin{frame}
+\frametitle{API/Modell}
+\begin{itemize}
+\item Modelle ähneln sich
+\item Begriffsunterchiede
+\item weitere Unterschiede
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\includegraphics[width=10cm]{cuda_opencl_begriffe.png}
+\newline Quelle: [1]
+\end{center}
+\end{frame}
+
+\subsection{Entwicklungsaufwand}
+\begin{frame}
+\begin{center}
+\includegraphics[width=9cm]{api_abstraction_level.png}
+\newline Quelle: [2]
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Entwicklungsaufwand}
+OpenCL:
+\begin{itemize}
+\item API mit geringer Abstraktion
+\item verschiedene Debugging-Möglichkeiten je Plattform
+\item guter Debugger(cross-plattform): gDEBugger
+\item verschieden Geräte: unterschiedliche Implementation
+\end{itemize}
+CUDA:
+\begin{itemize}
+\item geringe und hohe Abstraktion
+\item viele Bibliotheken
+\item guter Debugger durch CUDA-SDK
 \end{itemize}
 \end{frame}
 
@@ -77,9 +143,10 @@
 \begin{appendix}
 \begin{frame}
 \frametitle{Quellen}
-\begin{itemize}
-\item \url{http://www.testtesttest.org/}
-\end{itemize}
+\begin{enumerate}
+\item \url{ftp://ftp.informatik.uni-stuttgart.de/pub/library/medoc.ustuttgart_fi/DIP-3178/DIP-3178.pdf}
+\item \url{https://wiki.aalto.fi/download/attachments/40025977/Cuda+and+OpenCL+API+comparison_presented.pdf}
+\end{enumerate}
 \end{frame}
 \end{appendix}
 

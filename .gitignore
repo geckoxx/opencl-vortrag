@@ -7,6 +7,15 @@ beamer/*.synctex.gz
 beamer/*.snm
 beamer/*.vrb
 
+image_proc/*.log
+image_proc/*.toc
+image_proc/*.aux
+image_proc/*.nav
+image_proc/*out
+image_proc/*.synctex.gz
+image_proc/*.snm
+image_proc/*.vrb
+
 openCL_info/build
 clim/build
 clim/.kdev4
