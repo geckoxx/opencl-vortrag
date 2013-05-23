@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <stdint.h>
+#include <string.h>
 #include <CL/cl.hpp>
 #include <Magick++.h>
 
@@ -69,10 +70,6 @@ inline void checkErr(cl_int err, const char * name)
 }
 
 int main(int argc, char **argv) {
-    if(argc < 3) {
-        std::cout << "Eingabe- und Ausgabebild angeben!" << std::endl;
-        return 0;
-    }
     cl_int err;
     std::vector<Platform> platforms;
     Platform::get(&platforms);
@@ -94,14 +91,19 @@ int main(int argc, char **argv) {
         devices = context.getInfo<CL_CONTEXT_DEVICES>();
         if(devices.size() > 0) {
             device = devices[0];
+			std::cout << "Max Image 2D Width: " << device.getInfo<CL_DEVICE_IMAGE2D_MAX_WIDTH>() << std::endl;
+			std::cout << "Max Image 2D Height: " << device.getInfo<CL_DEVICE_IMAGE2D_MAX_HEIGHT>() << std::endl;
+			std::cout << "Profiling Timer Resolution in ns: " << device.getInfo<CL_DEVICE_PROFILING_TIMER_RESOLUTION>() << std::endl;
+			std::cout << "Vendor: " << pl.getInfo<CL_PLATFORM_VENDOR>() << std::endl;
             break;
         }
     }
-        
-    CommandQueue queue = CommandQueue(context, device);
+
+    
+	CommandQueue queue = CommandQueue(context, device, CL_QUEUE_PROFILING_ENABLE);
     
     Magick::Image image1;
-    image1.read(argv[1]);
+    image1.read("Ball.png");
     long image1_size = 4 * image1.rows() * image1.columns();
     int height = image1.rows();
     int width = image1.columns();
@@ -129,7 +131,7 @@ int main(int argc, char **argv) {
     cl::Image2D imageOut(context, CL_MEM_WRITE_ONLY, outFormat, width, height, 0, NULL, &err);
     checkErr(err, "Image2D()");
     
-    std::ifstream kernelFile("../image_manipulation.cl");
+    std::ifstream kernelFile("image_manipulation.cl");
     std::string imageProg(std::istreambuf_iterator<char>(kernelFile), (std::istreambuf_iterator<char>()));
     cl::Program::Sources imageSource(1, std::make_pair(imageProg.c_str(), imageProg.length() + 1));
     cl::Program imageProgram(context, imageSource, &err);
@@ -144,18 +146,28 @@ int main(int argc, char **argv) {
     basic.setArg(0, imageIn);
     basic.setArg(1, imageOut);
     
-    Event kernel_event, read_event;
-    queue.enqueueNDRangeKernel(basic, cl::NullRange, cl::NDRange(width, height), cl::NDRange(1, 1), NULL, &kernel_event);
-    
+    Event kernel_event;
+
+    queue.enqueueNDRangeKernel(basic, cl::NullRange, cl::NDRange(width, height), cl::NDRange(1, 1), NULL, &kernel_event);    
     kernel_event.wait();
+	cl_ulong kernel_event_start, kernel_event_end;
+	kernel_event_start = kernel_event.getProfilingInfo<CL_PROFILING_COMMAND_START>();
+	kernel_event_end = kernel_event.getProfilingInfo<CL_PROFILING_COMMAND_END>();
+	std::cout << "Kernelcommand (Edge Detection) in ns: " << (kernel_event_end - kernel_event_start) << std::endl;
+
+	Event read_event;
     uint8_t *image2_pixels = new uint8_t[image1_size];
     err = queue.enqueueReadImage(imageOut, CL_TRUE, origin, region, 0, 0, image2_pixels, NULL, &read_event);
     checkErr(err, "enqueueReadImage()");
-    
     read_event.wait();
+	cl_ulong read_event_start, read_event_end;
+	read_event_start = read_event.getProfilingInfo<CL_PROFILING_COMMAND_START>();
+	read_event_end = read_event.getProfilingInfo<CL_PROFILING_COMMAND_END>();
+	std::cout << "Image Write to new Buffer in ns" << (read_event_end - read_event_start) << std::endl;
+
     Magick::Image image2;
     image2.read(image1.columns(), image1.rows(), "RGBA", MagickCore::CharPixel, image2_pixels);
-    image2.write(argv[2]);
-    
+    image2.write("Ball_out.png");
+
     return 0;
 }
